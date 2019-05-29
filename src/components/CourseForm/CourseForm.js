@@ -32,11 +32,12 @@ export default class CourseForm extends Component {
                     console.error(error);
                 });
         } else {
-            axios.post('/courses/', this.setState.newCourse)
+            axios.post('/courses/', this.state.newCourse)
                 .then(response => {
                     objId = response.data;
                     this.props.addItemList({ id: objId, ...this.state.newCourse });
                     this.setState({ newCourse: { ...this.objModel } });
+                    console.log(response.data);
                 })
                 .catch(error => {
                     alert('Server error');

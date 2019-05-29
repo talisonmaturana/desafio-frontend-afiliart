@@ -23,14 +23,9 @@ export default class CourseManagement extends React.Component {
             .catch(error => console.error(error));
     }
     courseCreateHandler = (paramNewCourse) => {
-        axios.post('/courses')
-            .then(response => {
-                //this.setState({ courses: response.data })
-                let newList = response.data;
-                newList.push(paramNewCourse);
-                this.setState({ courses: newList });
-            })
-            .catch(error => console.error(error));
+        let newList = this.state.courses;
+        newList.push(paramNewCourse);
+        this.setState({ courses: newList });
 
     }
 
@@ -86,7 +81,7 @@ export default class CourseManagement extends React.Component {
                 <Collapse buttonText="Add Course" btnClass='btn-secondary'
                     collapseId="newCourseForm">
                     <CourseForm addItemList={this.courseCreateHandler}
-                        editJobId={this.state.selectedId} panelId="newCourseForm"
+                        editCourseId={this.state.selectedId} panelId="newCourseForm"
                         clearSelectedId={this.clearSelectedId}
                         editedHandler={this.courseEditedHandler} />
                 </Collapse>
